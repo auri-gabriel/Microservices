@@ -7,8 +7,14 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "Launch Service Registry",
       "program": "${workspaceFolder}/service-registry/bin/run"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Speakers Service",
+      "program": "${workspaceFolder}/speakers-service/bin/run"
     }
   ]
 }
