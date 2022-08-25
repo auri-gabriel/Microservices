@@ -13,12 +13,14 @@ class ServiceRegistry {
       (service) =>
         service.name === name && semver.satisfies(service.version, version)
     );
+
     return candidates[Math.floor(Math.random() * candidates.length)];
   }
 
   register(name, version, ip, port) {
     this.cleanup();
     const key = name + version + ip + port;
+
     if (!this.services[key]) {
       this.services[key] = {};
       this.services[key].timestamp = Math.floor(new Date() / 1000);
@@ -31,7 +33,6 @@ class ServiceRegistry {
       );
       return key;
     }
-
     this.services[key].timestamp = Math.floor(new Date() / 1000);
     this.log.debug(
       `Updated services ${name}, version ${version} at ${ip}:${port}`
@@ -43,7 +44,7 @@ class ServiceRegistry {
     const key = name + version + ip + port;
     delete this.services[key];
     this.log.debug(
-      `Unregistered service ${name}, version ${version} at ${ip}:${port}`
+      `Unregistered services ${name}, version ${version} at ${ip}:${port}`
     );
     return key;
   }
